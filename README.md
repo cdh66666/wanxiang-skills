@@ -14,25 +14,39 @@
 
 ## 安装
 
-### 克隆整个技能库
+### 推荐：让 Codex 直接安装
 
-```powershell
-git clone https://github.com/cdh66666/wanxiang-skills.git "$env:USERPROFILE\.codex\skills\万象技能库"
+在 Codex 中说：
+
+```text
+请从 GitHub 仓库 cdh66666/wanxiang-skills 的 skills/evidence-atlas-research 安装 Skill。
 ```
 
-### 只安装一个 Skill
+也可以运行系统自带的安装器：
 
 ```powershell
-Copy-Item -Recurse .\skills\evidence-atlas-research "$env:USERPROFILE\.codex\skills\evidence-atlas-research"
+python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
+  --repo cdh66666/wanxiang-skills `
+  --path skills/evidence-atlas-research
 ```
 
 重新启动 Codex 或新建任务后，使用 `$evidence-atlas-research` 调用。
+
+### 克隆整个技能库用于维护
+
+```powershell
+git clone https://github.com/cdh66666/wanxiang-skills.git
+```
+
+仓库采用多 Skill 目录结构。不要只把仓库根目录塞进个人 Skills 目录；应通过上面的安装器安装各个 `skills/<name>` 子目录。
 
 ## 更新
 
 ```powershell
 git pull
 ```
+
+更新已安装的 Skill 时，可以删除旧的同名 Skill 目录后重新运行安装器；操作前先确认目录中没有未提交的个人修改。
 
 新增 Skill 时遵循相同结构：
 
