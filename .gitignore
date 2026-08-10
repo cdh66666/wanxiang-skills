@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+downloads/
+tmp/
+output/
