@@ -1,82 +1,85 @@
 ---
 name: evidence-atlas-research
-description: Create a visual, source-verifiable technical investigation from original patent figures, academic paper figures, official materials, and real teardown photographs. Use when investigating how a product, mechanism, device, competitor, or technology works; when the user asks for patents, papers, prior art, teardown evidence, mechanism structure, an evidence atlas, or a Chinese illustrated report; or when a text-only answer would be hard to understand. Especially useful for PDF-heavy research that must preserve authentic source images, map numbered parts to actions, distinguish fact from inference, and deliver a visually checked PDF or document.
+description: Research mechanical structures, mechanisms, products, robots, patents, papers, prior art, and teardown evidence, then create a Chinese visual evidence atlas using authentic source figures and concise accurate annotations. Use when the user asks to 调研结构、机构原理、专利图纸、仿生机器人、竞品拆解、机械方案、3D打印参考, or says pictures are more useful than long text. Default to separate visual booklets for distinct objects, large original figures, three-line per-figure explanations, embedded source links, and rendered-page QA.
 ---
 
 # Evidence Atlas Research
 
-Turn scattered technical sources into an illustrated evidence dossier that lets a reader understand the mechanism by following authentic figures, short annotations, and explicit confidence labels.
+Create a mechanism atlas that can be understood from the figures without reading a long report.
 
-## Non-negotiable rules
+## Required behavior
 
-- Prefer primary evidence: granted/published patents, peer-reviewed papers, standards, official manuals, regulatory filings, and manufacturer material.
-- Use original figures and real photographs. Do not redraw, beautify, or synthesize a substitute unless the user explicitly asks for one; label any reconstruction prominently.
-- Preserve figure numbers and visible callouts. Cropping blank margins, rotating, scaling, and improving legibility are allowed when they do not alter evidence.
-- Never imply that a patent embodiment proves the shipped product uses the same implementation.
-- Mark every important claim as **confirmed**, **patent embodiment**, **reported by a secondary source**, or **inference**.
-- Distinguish an exact product teardown from a related platform or adjacent model.
-- Put citations next to the figure or claim they support, not only in a bibliography.
+- Prefer authentic patent drawings, paper figures, official diagrams, and exact-product teardown photographs.
+- Keep original reference numerals and figure labels. Crop margins or improve legibility only; never silently redraw evidence.
+- Separate distinct objects or species into different deliverables unless the user requests one combined file.
+- Use images as the main content. Avoid a parallel long narrative report unless requested.
+- Distinguish source fact from engineering advice. Never guess a component function from appearance alone.
+- Put the direct source link beside each patent/source group.
+- Treat patent status as a search clue, not legal advice.
 
-Read [references/evidence-standards.md](references/evidence-standards.md) before selecting sources. Read [references/dossier-spec.md](references/dossier-spec.md) before composing the final artifact.
+Read [references/evidence-standards.md](references/evidence-standards.md) before annotating. Read [references/dossier-spec.md](references/dossier-spec.md) before building the deliverable.
 
-## Workflow
+## Choose one mode
 
-### 1. Lock the investigation target
+### Structure atlas mode — default
 
-Record the exact product, generation, year, variant, region, and the mechanism question. Resolve ambiguous marketing names before collecting evidence. State unavoidable uncertainty early.
+Use for mechanism research, patent drawing surveys, robot structures, and 3D-printing references.
 
-### 2. Build a source matrix
+- Collect many relevant authentic drawings.
+- Explain each extracted drawing page with exactly three compact fields:
+  1. **图示：** what is visibly shown or identified by the source.
+  2. **运动/作用：** input → transmission → output; if static, say that the figure only shows assembly or location.
+  3. **样机借鉴：** a clearly labeled engineering suggestion, not a patent fact.
+- Place two large figures per page by default. Use one when labels would otherwise be unreadable.
+- Label extracted images as **图纸页 N** when one image may contain multiple original figures. Refer to the visible `FIG.`/`图号` inside the image for the official figure number.
 
-Search broadly, then promote primary sources. Track title, owner/author, publication number or DOI, date, URL, evidence type, exact-product relevance, useful figure/page, and reuse notes. Group patent family members so the same disclosure is not counted repeatedly.
+### Full evidence mode — only when needed
 
-Use this priority order:
+Use when the user asks for a product conclusion, scientific evidence chain, standards comparison, freedom-to-operate lead, or teardown-to-patent mapping. Add papers, standards, manuals, teardown photographs, confidence labels, findings, and uncertainty. Do not force this longer mode onto a patent-picture request.
 
-1. Patent full text and drawings from an official patent office or Google Patents.
-2. Peer-reviewed paper or author-hosted manuscript.
-3. Official manual, filing, launch material, or technical support page.
-4. Credible teardown, repair, or engineering analysis with original photographs.
-5. News and commentary only for leads or context.
+## Efficient workflow
 
-### 3. Download and inspect whole documents
+1. **Split the target.** Decide the booklet boundaries first: species, product family, mechanism class, or medium. Put shared subsystems only in the most relevant booklet and state where they went.
+2. **Find distinct primary sources.** Search patents and authoritative sources; collapse patent families and remove near-duplicates. Prefer sources that add a new mechanism view.
+3. **Verify only what is needed.** Download the full source, but read the abstract, figure list, relevant detailed-description passages, claims needed for boundaries, and legal-status source. Do not summarize the whole document.
+4. **Extract authentic figures.** Preserve original images and maintain a manifest mapping source → extracted image → visible figure number/page.
+5. **Annotate from evidence.** Write the three fields only after checking the figure description and surrounding text. If the source does not establish motion, write “本图不显示/不单独说明运动”.
+6. **Build the atlas.** Use `scripts/build_annotated_atlas.py` with a JSON manifest when producing DOCX. Use `scripts/render_pdf_pages.py` when source PDF pages must be rasterized.
+7. **Verify directly.** Check annotation/image counts, links, figure mapping, and file integrity. Render the final document, inspect every page, fix clipping or unreadable labels, and rerender once if changed.
+8. **Deliver only finals.** Return the requested booklet(s). Keep source PDFs, extracted figures, manifests, QA PDFs, and contact sheets as internal work files unless requested.
 
-Do not select figures from snippets alone. Download the full PDF, render candidate pages, and inspect surrounding text, figure captions, and reference numerals. Use `scripts/render_pdf_pages.py` to turn chosen PDF pages into PNGs and optionally a contact sheet.
+## Source selection
 
-### 4. Select figures by explanatory job
+Use the smallest source set that gives broad structural coverage:
 
-Choose the smallest set that answers these questions:
+1. Patent publication/grant and drawings.
+2. Peer-reviewed paper or institutional project page when it adds biomechanics, validation, or a different mechanism.
+3. Official manual, standard, filing, or manufacturer material.
+4. Exact-product teardown or repair evidence.
+5. Secondary commentary only as a lead.
 
-- What are the main physical parts and where are they located?
-- What transmits force, motion, power, or information?
-- What changes from rest to tighten/engage and loosen/release?
-- What senses state, prevents overload, or permits manual override?
-- Which observations come from an actual teardown?
+For a drawing-heavy request, do not delay delivery merely to fill every evidence category. State missing evidence briefly.
 
-Prefer complementary views—system layout, section/exploded view, action sequence, electrical/control diagram, and real hardware—over many near-duplicate figures.
+## Annotation accuracy gate
 
-### 5. Create the visual explanation
+Before accepting a caption, confirm:
 
-For each figure, include a compact caption block:
+- The subject and view match the image.
+- The motion sentence is supported by the description, claim, caption, or visible kinematic relation.
+- “样机借鉴” is feasible advice and is not written as the patent's own design.
+- Composite extraction pages are not mislabeled as a single official patent figure.
+- Irrelevant accessories are labeled as non-core instead of being assigned an invented role.
+- Terms for the same numbered part remain consistent across pages.
 
-- **Source identity:** document title, patent/publication/DOI, figure and page.
-- **Look here:** the two or three numbered features the reader should notice.
-- **What happens:** one short cause-and-effect explanation.
-- **Evidence status:** one of the four labels above.
-- **Boundary:** what the figure cannot prove.
+## Layout defaults
 
-When several figures describe a sequence, order them by mechanism state rather than source order. Define each reference numeral once, then use the same Chinese term consistently.
-
-### 6. Synthesize without overclaiming
-
-Separate observations from interpretation. If a teardown photo and patent drawing appear to correspond, describe the mapping as an inference unless a primary source explicitly confirms it. List plausible alternatives when evidence is incomplete.
-
-### 7. Render and visually verify
-
-Render the final PDF/document to images and inspect every page at readable size. Check for missing images, tiny labels, clipped captions, incorrect page references, broken links, duplicated figures, and captions separated from their images. Iterate until the artifact is understandable without relying on a long prose appendix.
-
-### 8. Deliver reproducibly
-
-Provide the final artifact, the source list with direct links, a short findings summary, and an uncertainty list. Keep downloaded sources and a source matrix when the workspace permits so another researcher can reproduce the dossier.
+- Chinese DOCX, Letter portrait, compact reference-guide styling.
+- Cover + short source index + source-group pages.
+- Two figures per page, large white figure area, short annotation beneath each.
+- Each source heading shows publication number, title, status clue, and direct link.
+- No separate bibliography when every source group already carries its direct link, unless requested.
+- No repeated executive summary, learning path, BOM, or generic theory section unless it directly answers the request.
 
 ## Stop conditions
 
-Pause and explain the limitation when the exact product cannot be identified, the only available image is an unattributed repost, a paywall prevents verification of the referenced figure, or copyright/terms prohibit the requested reproduction. Continue with lawful alternatives such as patent drawings, official previews, links, or concise paraphrase.
+Pause or label the limitation when the exact object cannot be identified, the figure is an unattributed repost, the source text cannot verify the proposed function, the page/figure mapping is uncertain, or reproduction is prohibited. Continue with lawful alternatives and never fill gaps with confident-sounding guesses.

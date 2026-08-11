@@ -1,32 +1,42 @@
-# Evidence dossier specification
+# Atlas deliverable specification
 
-Use this as a default structure, then shorten or expand to fit the evidence.
+## Default: structure atlas
 
-1. **Cover and research question** — exact product, variant, mechanism question, one representative authentic image.
-2. **Identity and source map** — product timeline, patent family, papers, official sources, teardown sources.
-3. **System anatomy** — the best overall patent or manual figure with a numbered-part glossary.
-4. **Mechanical path** — sectional/exploded views showing force and motion transmission.
-5. **Action sequence** — rest, engage/tighten, hold, release/loosen; one state per panel when possible.
-6. **Sensing, control, and safety** — sensors, controller, power path, clutch/limit/manual override.
-7. **Physical evidence** — exact-product teardown photographs; related-product photos segregated and labeled.
-8. **Findings and uncertainty** — confirmed facts, patent-only possibilities, inferences, unresolved questions.
-9. **Source register** — direct links, identifiers, figure/page references, access dates.
+1. Cover: exact subject, “专利结构图解/证据图册”, source and figure counts.
+2. Short index: one line per source with identifier, title, and drawing count.
+3. Source groups: start each patent/source on a clean page; show status clue and direct link.
+4. Figure panels: two per page by default, each with:
+   - **图示：** source-supported identity of the view or assembly.
+   - **运动/作用：** input, transmission, output, or an explicit statement that the view is static.
+   - **样机借鉴：** engineering advice clearly separated from source fact.
+5. Closing legal/evidence note: patent drawings are prior-art evidence, not a freedom-to-operate opinion.
 
-## Page design
+When different objects, species, or product families would confuse the reader, create separate files. Put shared modules such as sealing or a common drivetrain in the booklet where they are actually used, then cross-reference that choice in the other booklet's index.
 
-- Let images occupy most of the page; use short Chinese captions rather than essay paragraphs.
-- Keep each figure and its caption together.
-- Use one consistent visual treatment for each evidence label.
-- Make patent reference numerals readable at normal zoom.
-- Place the source immediately below its figure and keep a full register at the end.
-- If a figure cannot be read at the intended page size, split it across pages or crop a detail while also preserving the full view.
+## Optional: full evidence mode
 
-## Final QA checklist
+Add only when the question requires it:
 
-- Every image is authentic, visible, and traceable.
-- Every major mechanism claim points to a figure or quoted source location.
-- Exact product and adjacent products are visually separated.
-- Patent disclosure is not described as confirmed production hardware.
-- Page and figure numbers match the original documents.
-- Links open and no local-only paths appear in the public deliverable.
-- The final rendered pages have no clipping, missing glyphs, or unreadably small labels.
+- exact product identity and source map;
+- patent family and timeline;
+- papers or standards explaining principles and failure modes;
+- exact-product teardown photographs;
+- confirmed findings, patent-only possibilities, inference, and uncertainty;
+- source register when links beside figures are insufficient.
+
+## Figure handling
+
+- Preserve the untouched source file.
+- Keep visible patent numbers, `FIG.`/图号, callouts, arrows, legends, and scale bars.
+- If an extracted image contains more than one official figure, call it **图纸页 N**, not “图 N”.
+- If labels are unreadable at the intended size, enlarge to one figure per page or add a disclosed detail crop while retaining the full view.
+- Do not put editorial arrows inside an original drawing unless clearly styled and disclosed.
+
+## QA
+
+- Figure count equals annotation count.
+- Each caption belongs to the adjacent image and correct source.
+- Direct links open and identifiers match.
+- Source statements and prototype advice are visibly distinct.
+- Final DOCX/PDF opens, renders, and has no clipping, blank spill pages, missing glyphs, or tiny unreadable labels.
+- Inspect every rendered page; do not deliver QA PDFs/contact sheets unless requested.

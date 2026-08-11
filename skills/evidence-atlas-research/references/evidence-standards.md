@@ -19,6 +19,15 @@ Never collapse these categories into a single statement of fact.
 - If contrast or sharpness is adjusted, say so when it could affect interpretation.
 - Do not place newly drawn arrows inside an original figure unless clearly styled and disclosed as an editorial annotation. Prefer a caption that says where to look.
 - Never present an AI-generated, traced, or reconstructed image as a patent, paper, or teardown figure.
+- Call an extracted raster **图纸页 N** when it contains multiple original figures or when the extraction index is not identical to the patent's official figure number.
+
+## Annotation separation
+
+- **图示** may name only what the source text or visible drawing supports.
+- **运动/作用** must state the kinematic or functional relation supported by the source. If none is shown, say so explicitly.
+- **样机借鉴** is an engineering recommendation and must never be phrased as part of the patent disclosure.
+- Do not infer a motor, seal, spring, sensor, or load path merely because a shape resembles one.
+- Label unrelated payloads or accessories as non-core instead of inventing relevance to the mechanism under study.
 
 ## Patent discipline
 

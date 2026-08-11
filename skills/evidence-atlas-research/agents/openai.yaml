@@ -1,4 +1,4 @@
 interface:
-  display_name: "证据图册式调查"
-  short_description: "用真实专利、论文与拆解原图完成可核验的技术调查报告"
-  default_prompt: "Use $evidence-atlas-research to investigate this product with original patent figures, paper figures, teardown evidence, Chinese captions, and explicit confidence labels."
+  display_name: "机构证据图册调研"
+  short_description: "用真实专利图和逐图三句注释完成结构调研与样机参考"
+  default_prompt: "Use $evidence-atlas-research to research this mechanism as separate Chinese visual booklets with authentic patent drawings, accurate three-line annotations, direct source links, and rendered-page QA."
